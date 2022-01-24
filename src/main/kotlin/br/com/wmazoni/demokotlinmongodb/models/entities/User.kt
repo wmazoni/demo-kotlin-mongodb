@@ -5,6 +5,11 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "user")
-class User(@Id var id: String?, var name: String, @DBRef(lazy = true) var posts: List<Post>) {
+class User(
+    @Id var id: String?,
+    val name: String,
+    val email: String,
+    @DBRef(lazy = true) var posts: ArrayList<Post>? = ArrayList()
+) {
 
 }
