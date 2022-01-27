@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "user")
-class User(
+data class User(
     @Id var id: String?,
     val name: String,
     val email: String,
