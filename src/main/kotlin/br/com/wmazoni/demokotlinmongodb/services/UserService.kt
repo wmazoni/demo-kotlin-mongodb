@@ -18,4 +18,16 @@ class UserService(val userRepository: UserRepository) {
         val result = userRepository.findById(id).orElseGet { throw ResourceNotFoundException("Objeto não encontrado") }
         return UserDTO(result)
     }
+
+    fun insert(dto: UserDTO): UserDTO {
+        var entity = User()
+        copyDtoToEntity(dto, entity)
+        entity = userRepository.insert(entity)
+        return UserDTO(entity)
+    }
+
+    private fun copyDtoToEntity(dto: UserDTO, entity: User) {
+        entity.name = dto.name
+        entity.email = dto.email
+    }
 }
