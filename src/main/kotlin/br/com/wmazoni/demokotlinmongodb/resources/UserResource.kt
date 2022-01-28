@@ -4,10 +4,8 @@ import br.com.wmazoni.demokotlinmongodb.dto.UserDTO
 import br.com.wmazoni.demokotlinmongodb.models.entities.User
 import br.com.wmazoni.demokotlinmongodb.services.UserService
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 
 @RestController
 @RequestMapping("/users")
@@ -23,5 +21,12 @@ class UserResource(val userService: UserService) {
     fun findById(@PathVariable id: String): ResponseEntity<UserDTO> {
         val obj: UserDTO = userService.findById(id)
         return ResponseEntity.ok().body(obj)
+    }
+
+    @PostMapping
+    fun insert(@RequestBody dto: UserDTO): ResponseEntity<UserDTO> {
+        val obj = userService.insert(dto)
+        val uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.id).toUri()
+        return ResponseEntity.created(uri).body(obj)
     }
 }
