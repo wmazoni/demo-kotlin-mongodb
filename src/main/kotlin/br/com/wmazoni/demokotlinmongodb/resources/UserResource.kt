@@ -35,4 +35,10 @@ class UserResource(val userService: UserService) {
         val result = userService.update(id, obj)
         return ResponseEntity.ok().body(result)
     }
+
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: String): ResponseEntity<UserDTO> {
+        val obj = userService.delete(id)
+        return ResponseEntity.noContent().build()
+    }
 }

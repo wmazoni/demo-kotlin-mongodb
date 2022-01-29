@@ -33,6 +33,11 @@ class UserService(val userRepository: UserRepository) {
         return UserDTO(entity)
     }
 
+    fun delete(id: String) {
+        getEntityById(id)
+        val obj = userRepository.deleteById(id)
+    }
+
     private fun copyDtoToEntity(dto: UserDTO, entity: User) {
         entity.name = dto.name
         entity.email = dto.email
