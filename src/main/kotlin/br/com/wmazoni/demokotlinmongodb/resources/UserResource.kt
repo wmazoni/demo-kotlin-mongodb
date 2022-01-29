@@ -29,4 +29,10 @@ class UserResource(val userService: UserService) {
         val uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.id).toUri()
         return ResponseEntity.created(uri).body(obj)
     }
+
+    @PutMapping("/{id}")
+    fun update(@PathVariable id: String, @RequestBody obj: UserDTO): ResponseEntity<UserDTO> {
+        val result = userService.update(id, obj)
+        return ResponseEntity.ok().body(result)
+    }
 }
