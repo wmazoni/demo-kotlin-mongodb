@@ -1,7 +1,6 @@
 package br.com.wmazoni.demokotlinmongodb.resources
 
 import br.com.wmazoni.demokotlinmongodb.dto.UserDTO
-import br.com.wmazoni.demokotlinmongodb.models.entities.User
 import br.com.wmazoni.demokotlinmongodb.services.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
